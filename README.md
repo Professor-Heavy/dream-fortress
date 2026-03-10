@@ -1,16 +1,12 @@
-# Source SDK 2013
+# Dream Fortress 2
 
-Source code for Source SDK 2013.
-
-Contains the game code for Half-Life 2, HL2: DM and TF2.
-
-**Now including Team Fortress 2! ✨**
+Based on the Source SDK from Team Fortress 2, Dream Fortress is a small passion project including custom weapons, mechanics, and more.
 
 ## Build instructions
 
 Clone the repository using the following command:
 
-`git clone https://github.com/ValveSoftware/source-sdk-2013`
+`git clone https://github.com/Professor-Heavy/dream-fortress`
 
 ### Windows
 
