@@ -4,7 +4,46 @@
 {
 	"attributes"
 	{
-		
+		"4004"
+		{
+			"name"	"sourspot lessthan percentage"
+			"attribute_class"	"sourspot_lessthan_percentage"
+			"description_string"	"#Attrib_Sourspot_LessThan"
+			"description_format"	"value_is_percentage"
+			"hidden"	"1"
+			"effect_type"	"negative"
+			"stored_as_integer"	"0"
+		}
+		"4005"
+		{
+			"name"	"sweetspot greaterthan percentage"
+			"attribute_class"	"sweetspot_greaterthan_percentage"
+			"description_string"	"#Attrib_Sweetspot_GreaterThan"
+			"description_format"	"value_is_percentage"
+			"hidden"	"1"
+			"effect_type"	"negative"
+			"stored_as_integer"	"0"
+		}
+		"4006"
+		{
+			"name"	"sourspot damage penalty"
+			"attribute_class"	"sourspot_damage_mult"
+			"description_string"	"#Attrib_Sourspot_Damage_Mult"
+			"description_format"	"value_is_percentage"
+			"hidden"	"0"
+			"effect_type"	"negative"
+			"stored_as_integer"	"0"
+		}
+		"4007"
+		{
+			"name"	"sweetspot damage bonus"
+			"attribute_class"	"sweetspot_damage_mult"
+			"description_string"	"#Attrib_Sweetspot_Damage_Mult"
+			"description_format"	"value_is_percentage"
+			"hidden"	"0"
+			"effect_type"	"positive"
+			"stored_as_integer"	"0"
+		}
 	}
 
 	"items"

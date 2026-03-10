@@ -560,7 +560,7 @@ bool CTFWeaponBaseMelee::OnSwingHit( trace_t &trace )
 	if(pPlayer==C_TFPlayer::GetLocalTFPlayer() && haptics)
 		haptics->ProcessHapticEvent(2,"Weapons","meleehit");
 #endif
-
+	
 	bool bHitEnemyPlayer = false;
 
 	// Hit sound - immediate.
@@ -829,6 +829,41 @@ void CTFWeaponBaseMelee::DoMeleeDamage( CBaseEntity* ent, trace_t& trace, float 
 		if ( DotProduct( toEnt, entForward ) > 0.7071f )
 		{
 			iDmgType |= DMG_CRITICAL;
+		}
+	}
+
+	//Calculate the distance to the target and the distance of the swing.
+	//TODO: Swing end calculations are calculated here in an arbitrary way without consideration for weapon scaling. 
+	float fTargetDistance = vecSwingStart.DistTo(trace.endpos);
+	float fSwingDistance = vecSwingStart.DistTo(vecSwingEnd);
+
+	float fTargetDistancePercentage = clamp( fTargetDistance / fSwingDistance, 0.0f, 1.0f );
+
+	float fSourspotPercentage = 1.0f;
+	CALL_ATTRIB_HOOK_FLOAT( fSourspotPercentage, sourspot_lessthan_percentage );
+
+	float fSweetspotPercentage = 1.0f;
+	CALL_ATTRIB_HOOK_FLOAT( fSweetspotPercentage, sweetspot_greaterthan_percentage );
+
+	float fSourspotDamageMult = 1.0f;
+	CALL_ATTRIB_HOOK_FLOAT( fSourspotDamageMult, sourspot_damage_mult );
+
+	float fSweetspotDamageMult = 1.0f;
+	CALL_ATTRIB_HOOK_FLOAT( fSweetspotDamageMult, sweetspot_damage_mult );
+
+	if(fSourspotPercentage > 0)
+	{
+		if(fTargetDistancePercentage < fSourspotPercentage)
+		{
+			flDamageMod *= fSourspotDamageMult;
+		}
+	}
+
+	if (fSweetspotPercentage > 0)
+	{
+		if(fTargetDistancePercentage > fSweetspotPercentage)
+		{
+			flDamageMod *= fSweetspotDamageMult;
 		}
 	}
 
