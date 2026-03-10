@@ -110,6 +110,11 @@ bool CTFWearableDemoShield::CanCharge( CTFPlayer *pPlayer )
 	if ( pPlayer->GetGrapplingHookTarget() )
 		return false;
 
+	int iAttribBlocksCharge = 0;
+	CALL_ATTRIB_HOOK_INT_ON_OTHER( pPlayer, iAttribBlocksCharge, cannot_shield_charge );
+	if( iAttribBlocksCharge > 0 )
+		return false;
+
 	if ( pPlayer->m_Shared.GetDemomanChargeMeter() == 100.f )
 		return true;
 
